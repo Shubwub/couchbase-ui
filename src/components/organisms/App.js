@@ -1,11 +1,16 @@
 import styled from "styled-components";
 import { background } from "../../style_variables";
-import { Keypad } from "../molecules";
+import { Keypad, MnemonicList } from "../molecules";
+import { NumberField } from "../atoms";
 
 export default function App() {
   return (
     <AppElement>
-      <Keypad />
+      <NumberField />
+      <KeypadSection>
+        <Keypad />
+        <MnemonicList />
+      </KeypadSection>
     </AppElement>
   );
 }
@@ -19,5 +24,12 @@ const AppElement = styled.div`
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
+  max-width: 800px;
+  margin: 0 auto;
+`;
+
+const KeypadSection = styled.section`
+  display: flex;
+  width: 100%;
 `;
