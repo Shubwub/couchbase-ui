@@ -1,4 +1,4 @@
-import { SET_NUMBER } from "../constants/actionTypes";
+import { ADD_NUMBER } from "../constants/actionTypes";
 
 const INITIAL_STATE = {
   number: 0,
@@ -6,10 +6,10 @@ const INITIAL_STATE = {
 
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case SET_NUMBER:
+    case ADD_NUMBER:
       return {
         ...state,
-        number: action.payload,
+        number: Number("" + state.number + action.payload),
       };
     default:
       return state;

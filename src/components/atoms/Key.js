@@ -1,9 +1,13 @@
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import { accent } from "../../style_variables";
+import { addNumber } from "../../redux/actions";
 
 export default function Key({ digit, letters, index }) {
+  const dispatch = useDispatch();
+
   return digit !== null ? (
-    <KeyButton key={index}>
+    <KeyButton key={index} onClick={() => dispatch(addNumber(digit))}>
       <KeyContent>{digit}</KeyContent>
       <KeyContent>{letters.join(" ")}</KeyContent>
     </KeyButton>

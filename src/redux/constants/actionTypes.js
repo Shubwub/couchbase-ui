@@ -3,4 +3,4 @@
  *  are used in both the action and reducers files.
  */
 
-export const SET_NUMBER = "SET_NUMBER";
+export const ADD_NUMBER = "ADD_NUMBER";
