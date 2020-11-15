@@ -1,8 +1,13 @@
 import styled from "styled-components";
-import { background } from "./style_variables";
+import { background } from "../../style_variables";
+import { Keypad } from "../molecules";
 
-function App() {
-	return <AppElement></AppElement>;
+export default function App() {
+	return (
+		<AppElement>
+			<Keypad />
+		</AppElement>
+	);
 }
 
 const AppElement = styled.div`
@@ -16,5 +21,3 @@ const AppElement = styled.div`
 	font-size: calc(10px + 2vmin);
 	color: white;
 `;
-
-export default App;
