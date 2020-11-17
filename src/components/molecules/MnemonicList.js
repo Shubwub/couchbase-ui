@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { Mnemonic } from "../atoms";
+import { useSelector } from "react-redux";
 
 export default function MnemonicList() {
-  const mnemonics = [];
+  const mnemonics = useSelector(({ keypad }) => keypad.mnemonics);
+
   return (
     <List>
       {mnemonics.map((word) => (
@@ -22,5 +24,5 @@ const List = styled.ul`
   box-shadow: 5px 3px 5px 2px rgba(0, 0, 0, 0.05);
   overflow-x: hidden;
   overflow-y: scroll;
-  height: 370px;
+  height: 400px;
 `;

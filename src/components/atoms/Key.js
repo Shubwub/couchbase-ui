@@ -1,18 +1,26 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { accent } from "../../style_variables";
-import { addNumber } from "../../redux/actions";
+import { addNumber, clearNumber, removeLastNumber } from "../../redux/actions";
+import { ReactComponent as BinIcon } from "../../assets/images/Bin.svg";
+import { ReactComponent as BackIcon } from "../../assets/images/Back.svg";
 
-export default function Key({ digit, letters, index }) {
+export default function Key({ face, letters, index }) {
   const dispatch = useDispatch();
 
-  return digit !== null ? (
-    <KeyButton key={index} onClick={() => dispatch(addNumber(digit))}>
-      <KeyContent>{digit}</KeyContent>
+  return face >= 0 ? (
+    <KeyButton key={index} onClick={() => dispatch(addNumber(face))}>
+      <KeyContent>{face}</KeyContent>
       <KeyContent>{letters.join(" ")}</KeyContent>
     </KeyButton>
+  ) : face === "clear" ? (
+    <ActionKey onClick={() => dispatch(clearNumber())}>
+      <BinIcon />
+    </ActionKey>
   ) : (
-    <div></div>
+    <ActionKey onClick={() => dispatch(removeLastNumber())}>
+      <BackIcon />
+    </ActionKey>
   );
 }
 
@@ -21,7 +29,7 @@ const KeyButton = styled.button`
   background: none;
   font-size: 1rem;
   color: black;
-  height: 90px;
+  height: 80px;
   width: 90px;
   cursor: pointer;
   transition: 0.3s ease-in-out;
@@ -29,11 +37,37 @@ const KeyButton = styled.button`
   flex-direction: column;
   justify-content: flex-start;
   box-sizing: border-box;
+  border: 1px solid salmon;
+
+  &:nth-child(-n + 3) {
+    border-top: none;
+  }
+  &:nth-child(n - 3) {
+    border-bottom: none;
+  }
+  &:nth-child(3n + 1) {
+    border-left: none;
+  }
+  &:nth-child(3n + 3) {
+    border-right: none;
+  }
+
   &:hover {
     color: white;
     background: ${accent};
-    transform: scale(0.9);
     transition: 0.3s ease-in-out;
+  }
+`;
+
+const ActionKey = styled(KeyButton)`
+  justify-content: center;
+  align-items: center;
+  svg {
+    width: 40%;
+    fill: ${accent};
+  }
+  &:hover svg {
+    fill: white;
   }
 `;
 
