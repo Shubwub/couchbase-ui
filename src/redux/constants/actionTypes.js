@@ -3,4 +3,8 @@
  *  are used in both the action and reducers files.
  */
 
-export const SET_NUMBER = "SET_NUMBER";
+export const ADD_NUMBER = "ADD_NUMBER";
+export const CLEAR_NUMBER = "CLEAR_NUMBER";
+export const DELETE_LAST_NUMBER = "DELETE_LAST_NUMBER";
+
+export const STORE_MNEMONICS = "STORE_MNEMONICS";
