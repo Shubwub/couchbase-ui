@@ -3,12 +3,11 @@ import { Mnemonic } from "../atoms";
 import { useSelector } from "react-redux";
 
 export default function MnemonicList() {
-  const mnemonics = useSelector(({ keypad }) => keypad.mnemonics);
-
+  const { mnemonics } = useSelector(({ keypad }) => keypad);
   return (
     <List>
       {mnemonics.map((word) => (
-        <Mnemonic word={word} />
+        <Mnemonic word={word} key={word} />
       ))}
     </List>
   );

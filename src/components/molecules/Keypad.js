@@ -1,26 +1,15 @@
 import styled from "styled-components";
 import { Key } from "../atoms";
+import buttons from "../../buttons.json";
 
 export default function Keypad() {
-  const buttons = [
-    { face: 1, letters: [] },
-    { face: 2, letters: ["a", "b", "c"] },
-    { face: 3, letters: ["d", "e", "f"] },
-    { face: 4, letters: ["g", "h", "i"] },
-    { face: 5, letters: ["j", "k", "l"] },
-    { face: 6, letters: ["m", "n", "o"] },
-    { face: 7, letters: ["p", "q", "r", "s"] },
-    { face: 8, letters: ["t", "u", "v"] },
-    { face: 9, letters: ["w", "x", "y", "z"] },
-    { face: "clear", letters: [] },
-    { face: 0, letters: [] },
-    { face: "delete", letters: [] },
-  ];
+  const buttonOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9, "clear", 0, "delete"];
+
   return (
     <KeypadContainer>
       <ButtonLayout>
-        {buttons.map((item, index) => (
-          <Key face={item.face} letters={item.letters} index={index} />
+        {buttonOrder.map((item) => (
+          <Key face={item} letters={buttons[item]} index={item} key={item} />
         ))}
       </ButtonLayout>
     </KeypadContainer>

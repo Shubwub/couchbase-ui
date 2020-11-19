@@ -1,24 +1,32 @@
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { accent } from "../../style_variables";
-import { storeMnemonics } from "../../redux/actions";
+import { setWarning, storeMnemonics, toggleLoading } from "../../redux/actions";
+import buttons from "../../buttons.json";
+import { makeMnemonics } from "../../helpers/functions";
 
 export default function NumberField() {
-  const number = useSelector(({ keypad }) => keypad.number);
+  const { number } = useSelector(({ keypad }) => keypad);
+  const { warning } = useSelector(({ status }) => status);
   const dispatch = useDispatch();
 
-  // TODO: This is a temporary function that needs to be populated with mnemonic generating code.
-  const getMnemonics = (number) => {
-    const mnemonics = number.toString().split("");
-    dispatch(storeMnemonics(mnemonics));
-    return [];
-  };
-
   return (
-    <NumberBar>
-      {number}
-      <Submit onClick={() => getMnemonics(number)}>{">"}</Submit>
-    </NumberBar>
+    <>
+      {warning && <Warning>Please enter no more than 6 numbers.</Warning>}
+      <NumberBar>
+        {number}
+        <Submit
+          onClick={() => {
+            const mnemonics = makeMnemonics(number, buttons);
+            mnemonics
+              ? dispatch(storeMnemonics(mnemonics))
+              : dispatch(setWarning(true));
+          }}
+        >
+          {">"}
+        </Submit>
+      </NumberBar>
+    </>
   );
 }
 
@@ -30,6 +38,14 @@ const NumberBar = styled.div`
   box-shadow: 5px 3px 5px 2px rgba(0, 0, 0, 0.05);
   overflow: hidden;
   position: relative;
+`;
+
+const Warning = styled(NumberBar)`
+  background: red;
+  color: white;
+  font-size: 1.5rem;
+  height: auto;
+  padding: 15px 0;
 `;
 
 const Submit = styled.button`
@@ -46,8 +62,11 @@ const Submit = styled.button`
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s ease-in-out;
+  -webkit-text-stroke: 1px ${accent};
   &:hover {
     transform: scale(1.3);
+    color: white;
+    -webkit-text-stroke: 1px ${accent};
     transition: 0.3s ease-in-out;
   }
 `;
