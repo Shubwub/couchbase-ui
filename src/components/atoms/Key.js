@@ -22,6 +22,7 @@ export default function Key({ face, letters }) {
           ? dispatch(setWarning(true))
           : dispatch(addNumber(face))
       }
+      id={`${face}-key`}
     >
       <KeyContent>{face}</KeyContent>
       <KeyContent>{letters.join(" ")}</KeyContent>
@@ -32,6 +33,7 @@ export default function Key({ face, letters }) {
         dispatch(clearNumber());
         dispatch(setWarning(false));
       }}
+      id={`${face}-key`}
     >
       <BinIcon />
     </ActionKey>
@@ -41,6 +43,7 @@ export default function Key({ face, letters }) {
         dispatch(removeLastNumber());
         warning && dispatch(setWarning(false));
       }}
+      id={`${face}-key`}
     >
       <BackIcon />
     </ActionKey>

@@ -1,7 +1,7 @@
-import styled from "styled-components";
 import { Mnemonic } from "../atoms";
 import { useSelector } from "react-redux";
 import { FixedSizeList } from "react-window";
+import styled from "styled-components";
 
 export default function MnemonicList() {
   const { mnemonics } = useSelector(({ keypad }) => keypad);
@@ -11,23 +11,22 @@ export default function MnemonicList() {
   );
 
   return (
-    <FixedSizeList
-      width={"50%"}
-      height={400}
-      itemCount={mnemonics.length}
-      itemSize={50}
-      style={List}
-    >
-      {Row}
-    </FixedSizeList>
+    <ListWrapper data-name="mnemonic-list">
+      <FixedSizeList
+        width={"100%"}
+        height={400}
+        itemCount={mnemonics.length}
+        itemSize={50}
+      >
+        {Row}
+      </FixedSizeList>
+    </ListWrapper>
   );
 }
 
-const List = {
-  margin: 0,
-  boxSizing: "border-box",
-  listStyle: "none",
-  boxShadow: "5px 3px 5px 2px rgba(0, 0, 0, 0.05)",
-  overflowX: "hidden",
-  background: "white",
-};
+const ListWrapper = styled.div`
+  width: 50%;
+  -webkit-box-shadow: 0px 2px 10px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 5px 3px 5px 2px rgba(0, 0, 0, 0.05);
+  background: white;
+`;
