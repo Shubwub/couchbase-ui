@@ -13,7 +13,7 @@ export default function NumberField() {
   return (
     <>
       {warning && <Warning>Please enter no more than 6 numbers.</Warning>}
-      <NumberBar>
+      <NumberBar data-name="number-field">
         {number}
         <Submit
           onClick={() => {
@@ -22,6 +22,7 @@ export default function NumberField() {
               ? dispatch(storeMnemonics(mnemonics))
               : dispatch(setWarning(true));
           }}
+          id="submit"
         >
           {">"}
         </Submit>
