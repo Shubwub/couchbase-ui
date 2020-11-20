@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { accent } from "../../style_variables";
 import { setWarning, storeMnemonics } from "../../redux/actions";
 import buttons from "../../buttons.json";
-import { makeMnemonics } from "../../helpers/functions";
+import makeMnemonics from "../../helpers/functions";
 
 export default function NumberField() {
   const { number } = useSelector(({ keypad }) => keypad);

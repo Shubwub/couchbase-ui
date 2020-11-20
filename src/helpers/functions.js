@@ -14,7 +14,7 @@
  *                       exponential growth of the function.
  */
 
-export const makeMnemonics = (number, buttons, max = 6) => {
+const makeMnemonics = (number, buttons, max = 6) => {
   const numbers = Array.from(String(number), Number);
 
   // If the number provided is too large the function simply returns false.
@@ -48,3 +48,5 @@ export const makeMnemonics = (number, buttons, max = 6) => {
     [[]]
   );
 };
+
+module.exports = makeMnemonics;
