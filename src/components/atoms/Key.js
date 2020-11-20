@@ -22,6 +22,7 @@ export default function Key({ face, letters }) {
           ? dispatch(setWarning(true))
           : dispatch(addNumber(face))
       }
+      aria-label={`${face} ${letters.join(" ")}`}
       id={`${face}-key`}
     >
       <KeyContent>{face}</KeyContent>
@@ -34,6 +35,7 @@ export default function Key({ face, letters }) {
         dispatch(setWarning(false));
       }}
       id={`${face}-key`}
+      aria-label="clear"
     >
       <BinIcon />
     </ActionKey>
@@ -44,6 +46,7 @@ export default function Key({ face, letters }) {
         warning && dispatch(setWarning(false));
       }}
       id={`${face}-key`}
+      aria-label="delete"
     >
       <BackIcon />
     </ActionKey>

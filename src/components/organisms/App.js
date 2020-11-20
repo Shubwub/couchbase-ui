@@ -15,7 +15,7 @@ export default function App() {
   );
 }
 
-const AppElement = styled.div`
+const AppElement = styled.main`
   text-align: center;
   background-color: ${background};
   min-height: 100vh;
