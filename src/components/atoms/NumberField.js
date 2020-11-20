@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { accent } from "../../style_variables";
-import { setWarning, storeMnemonics, toggleLoading } from "../../redux/actions";
+import { setWarning, storeMnemonics } from "../../redux/actions";
 import buttons from "../../buttons.json";
 import { makeMnemonics } from "../../helpers/functions";
 
@@ -41,11 +41,12 @@ const NumberBar = styled.div`
 `;
 
 const Warning = styled(NumberBar)`
-  background: red;
+  background: ${accent};
   color: white;
   font-size: 1.5rem;
   height: auto;
   padding: 15px 0;
+  font-weight: bold;
 `;
 
 const Submit = styled.button`
