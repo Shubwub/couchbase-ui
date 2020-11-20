@@ -18,7 +18,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "npx cypress run && npx mocha src/helpers/helperTests.spec.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
