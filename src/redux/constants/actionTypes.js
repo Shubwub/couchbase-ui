@@ -8,3 +8,5 @@ export const CLEAR_NUMBER = "CLEAR_NUMBER";
 export const DELETE_LAST_NUMBER = "DELETE_LAST_NUMBER";
 
 export const STORE_MNEMONICS = "STORE_MNEMONICS";
+
+export const SET_WARNING = "SET_WARNING";

@@ -1,24 +1,47 @@
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { accent } from "../../style_variables";
-import { addNumber, clearNumber, removeLastNumber } from "../../redux/actions";
+import {
+  addNumber,
+  clearNumber,
+  removeLastNumber,
+  setWarning,
+} from "../../redux/actions";
 import { ReactComponent as BinIcon } from "../../assets/images/Bin.svg";
 import { ReactComponent as BackIcon } from "../../assets/images/Back.svg";
 
-export default function Key({ face, letters, index }) {
+export default function Key({ face, letters }) {
   const dispatch = useDispatch();
+  const { number } = useSelector(({ keypad }) => keypad);
+  const { warning } = useSelector(({ status }) => status);
 
   return face >= 0 ? (
-    <KeyButton key={index} onClick={() => dispatch(addNumber(face))}>
+    <KeyButton
+      onClick={() =>
+        number >= 100000
+          ? dispatch(setWarning(true))
+          : dispatch(addNumber(face))
+      }
+    >
       <KeyContent>{face}</KeyContent>
       <KeyContent>{letters.join(" ")}</KeyContent>
     </KeyButton>
   ) : face === "clear" ? (
-    <ActionKey onClick={() => dispatch(clearNumber())}>
+    <ActionKey
+      onClick={() => {
+        dispatch(clearNumber());
+        dispatch(setWarning(false));
+      }}
+    >
       <BinIcon />
     </ActionKey>
   ) : (
-    <ActionKey onClick={() => dispatch(removeLastNumber())}>
+    <ActionKey
+      onClick={() => {
+        dispatch(removeLastNumber());
+        warning && dispatch(setWarning(false));
+      }}
+    >
       <BackIcon />
     </ActionKey>
   );
