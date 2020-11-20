@@ -5,6 +5,11 @@ import { setWarning, storeMnemonics } from "../../redux/actions";
 import buttons from "../../buttons.json";
 import makeMnemonics from "../../helpers/functions";
 
+/**
+ * The area above the keypad and mnemonic list for displaying the currently
+ * entered number, as well as a button to "submit" the number to the
+ * mnemonic generating function.
+ */
 export default function NumberField() {
   const { number } = useSelector(({ keypad }) => keypad);
   const { warning } = useSelector(({ status }) => status);

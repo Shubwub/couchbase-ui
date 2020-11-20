@@ -2,7 +2,25 @@ import styled from "styled-components";
 import { Key } from "../atoms";
 import buttons from "../../buttons.json";
 
+/**
+ * The grid of keys used for entering a number for mnemonic generation.
+ * This component imports a "buttons" object used for pulling through
+ * the buttons to be rendered. This goal of this was to make it so
+ * buttons could be custom-fed so the code for the keypad and keys
+ * wouldn't need to be updated for new buttons and/or layouts.
+ *
+ */
 export default function Keypad() {
+  /**
+   * This is a bit of a hacky solution to mapping over the buttons object.
+   * Object.keys() returns a sorted array of keys and would thus throw off
+   * the order in which the buttons should be rendered to the keypad.
+   *
+   * Converting them to a Map did not solve the issue either and thus this
+   * array was created as a way to hard-code the order over which the "buttons"
+   * object is traversed. A more elegent would be desired if more time were
+   * available.
+   */
   const buttonOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9, "clear", 0, "delete"];
 
   return (
