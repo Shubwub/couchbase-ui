@@ -3,6 +3,17 @@ import { useSelector } from "react-redux";
 import { FixedSizeList } from "react-window";
 import styled from "styled-components";
 
+/**
+ * The list of mnemonics to render to screen. The mnemonics for this list
+ * are pulled from the redux store and are created by a function called in
+ * the "NumberField" component.
+ *
+ * This component uses a FixedSizeList from the "react-window" library as a
+ * way to combat the exponentially large load times that can come as a result
+ * of rendering thousands of results in an array. Using this library - only
+ * the list items that are in-view of the user are rendered, greatly
+ * increasing load times and scrolling fluidity.
+ */
 export default function MnemonicList() {
   const { mnemonics } = useSelector(({ keypad }) => keypad);
 

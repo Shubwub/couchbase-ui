@@ -3,6 +3,9 @@ import { background } from "../../style_variables";
 import { Keypad, MnemonicList } from "../molecules";
 import { NumberField } from "../atoms";
 
+/**
+ * The outermost App component acts as a wrapper for the entire application.
+ */
 export default function App() {
   return (
     <AppElement>
