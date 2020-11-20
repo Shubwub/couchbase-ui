@@ -1,70 +1,95 @@
-# Getting Started with Create React App
+<h1 align="center" style="color: #ea2328">
+  Couchbase Technical Test 💾
+</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center" style="font-size: 1.2rem;">
+  Write a function in JavaScript which will take a phone number of arbitrary length and will print out all possible mnemonics.
+</p>
+<p align="center" style="font-size: 1.2rem;">
+  Create a single page web application to demo the function using a JavaScript framework.
+</p>
 
-## Available Scripts
+<hr />
 
-In the project directory, you can run:
+This application was produced to tackle the 5 main goals outlined in the specification:
 
-### `npm start`
+- Write a function in JavaScript which will take a phone number of arbitrary length and will print out all possible mnemonics.
+- Provide a keypad that users can press to enter a number.
+- The number entered should have a maximum length of 6 digits.
+- Display for the number entered and the function output i.e. the possible mnemonics.
+- Reset button so users can enter a new number into the keypad.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The code provided attempts to fulfill all tasks as well as adding a few extra features in an effort to provide a better user experience. A collection of planned features that didn't make it into the current build can likely be found on the [**issues tab of the github repo**][is].
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+[is]: https://github.com/Shubwub/couchbase-ui/issues
+[at]: https://atomicdesign.bradfrost.com/chapter-2/
+[r]: https://redux.js.org/
+[c]: https://www.cypress.io/
+[aa]: https://www.w3.org/WAI/WCAG2AAA-Conformance.html
+[m]: https://mochajs.org/
 
-### `npm test`
+- ## 📋 Requirements
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  The requirements for running this application locally are the same as any standard `create-react-app` react application, of course with additional dependancies provided by npm. The currently supported browsers are Firefox and Chrome.
 
-### `npm run build`
+- ## 🎉 Installation and setup
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  Once this repository is cloned, dependencies must be met through:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  ```bash
+    npm i
+  ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  A local development server can then be spun up through
 
-### `npm run eject`
+  ```bash
+    npm start
+  ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- ## 📖 Documentation
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  - ### 🚧 Structure
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    Functional components should be used where possible due to their reduced compile size and the phasing out of class-components by the react development team.
+    The project also tries to follow an [**atomic**][at] component structure. The basic idea being to split components into organisms, molecules and atoms. organisms being made of many molecules, and molecules being made of many atoms.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  - ### ⚙️ Redux
 
-## Learn More
+    App-wide state management is done through [**Redux**][r]. The structure of which is as follows:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    ```JSON
+      "keypad": {
+        "number": "number",
+        "mnemonics": "string[]"
+      },
+      "status": {
+        "warning": "boolean",
+      }
+    ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    Data stored under `keypad` should refer to anything related to the actual on-screen data of the application. The `number` being the number entered in the keypad, and `mnemonics` being the listt of mnemonics returned from submitting the number.
 
-### Code Splitting
+    The `status` object is for the general status of the application. At the moment only populated with a `warning` boolean for wether the 6-digit warning needs to be shown, but in the future would include things like error and loading states.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  - ### 🏷️ !Typescript
 
-### Analyzing the Bundle Size
+    This project **does not** uses TypeScript. This was done in an effort to better align the codebase with what is primarily used on the UI at couchbase. Preferrably Angular would be used as the javascript framework - however due to limited time, react was chosen for its familiarity.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+  - ### ♿ Accessibility
 
-### Making a Progressive Web App
+    Accessibility for this project should be kept to at least a [**AA standard**][aa] (In compliance with the W3C Web Content Accessibility Guidelines) as best as posssible. aXe-react has been installed as a means of complying with these standards. Current warning can be viewed from the console when the application is being ran in development mode.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+  - ### 🐶 Husky
+    Husky pre-commit hooks are used to ensure breaking or poor-quality code is not commited to the git repo. The pre-commit hook script can be found in `.husky/_/pre-commit`. This script will run the cypress tests as well as linting all js files.
 
-### Advanced Configuration
+- ## 🧪 Testing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  This project uses [**Cypress**][c] and [**mocha**][m] for it's testing. Cypress was chosen as it's what's most familiar and better reflects a user journey through an application. On the other hand, mocha was implemented as a way to explicitely run unit tests for the mnemonic generating function.
 
-### Deployment
+  Tests can be found in `/cypress/integration`. Elements should be selected using data-name attributes. This is the apporach recommended by Cypress as it's least intrusive to the DOM.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+  To run the test suite enter:
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  ```bash
+    npm test
+  ```
