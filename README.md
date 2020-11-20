@@ -27,6 +27,7 @@ The code provided attempts to fulfill all tasks as well as adding a few extra fe
 [c]: https://www.cypress.io/
 [aa]: https://www.w3.org/WAI/WCAG2AAA-Conformance.html
 [m]: https://mochajs.org/
+[sc]: https://styled-components.com/
 
 - ## 📋 Requirements
 
@@ -82,6 +83,8 @@ The code provided attempts to fulfill all tasks as well as adding a few extra fe
   - ### 🐶 Husky
     Husky pre-commit hooks are used to ensure breaking or poor-quality code is not commited to the git repo. The pre-commit hook script can be found in `.husky/_/pre-commit`. This script will run the cypress tests as well as linting all js files.
 
+  - ### 💄 Styling
+    The styling of this project is done through the use of [**styled-components**][sc]. This is a third-party library with the aim of blurring the line between react components and SCSS styling. At the time of writing `create-react-app` currently does not support the latest version of node-sass and so to avoid the setup of dart-sass on a windows machine, I opted to use styled-components as it's something I'm familiar with and looking to use more anyway.
 - ## 🧪 Testing
 
   This project uses [**Cypress**][c] and [**mocha**][m] for it's testing. Cypress was chosen as it's what's most familiar and better reflects a user journey through an application. On the other hand, mocha was implemented as a way to explicitely run unit tests for the mnemonic generating function.
