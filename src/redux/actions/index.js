@@ -3,7 +3,6 @@ import {
   CLEAR_NUMBER,
   DELETE_LAST_NUMBER,
   STORE_MNEMONICS,
-  TOGGLE_LOADING,
   SET_WARNING,
 } from "../constants/actionTypes";
 
