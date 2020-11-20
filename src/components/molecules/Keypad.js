@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Key } from "../atoms";
 import buttons from "../../buttons.json";
+import { mobile } from "../../style_variables";
 
 /**
  * The grid of keys used for entering a number for mnemonic generation.
@@ -43,6 +44,9 @@ const KeypadContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: ${mobile}px) {
+    width: 100%;
+  }
 `;
 
 const ButtonLayout = styled.div`

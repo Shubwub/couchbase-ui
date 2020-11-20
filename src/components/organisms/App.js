@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { background } from "../../style_variables";
+import { background, mobile } from "../../style_variables";
 import { Keypad, MnemonicList } from "../molecules";
 import { NumberField } from "../atoms";
 
@@ -35,4 +35,7 @@ const AppElement = styled.main`
 const KeypadSection = styled.section`
   display: flex;
   width: 100%;
+  @media (max-width: ${mobile}px) {
+    flex-direction: column;
+  }
 `;

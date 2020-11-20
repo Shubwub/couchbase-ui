@@ -2,6 +2,7 @@ import { Mnemonic } from "../atoms";
 import { useSelector } from "react-redux";
 import { FixedSizeList } from "react-window";
 import styled from "styled-components";
+import { mobile } from "../../style_variables";
 
 /**
  * The list of mnemonics to render to screen. The mnemonics for this list
@@ -40,4 +41,8 @@ const ListWrapper = styled.div`
   -webkit-box-shadow: 0px 2px 10px 5px rgba(0, 0, 0, 0.15);
   box-shadow: 5px 3px 5px 2px rgba(0, 0, 0, 0.05);
   background: white;
+  overflow-x: hidden;
+  @media (max-width: ${mobile}px) {
+    width: 100%;
+  }
 `;
