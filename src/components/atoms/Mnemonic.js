@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { accent } from "../../style_variables";
+import { useSpring, animated } from "react-spring";
 
 /**
  * A singular mnemonic tile to be rendered within a virtualized
@@ -11,10 +12,15 @@ import { accent } from "../../style_variables";
  *                         for rendering.
  */
 export default function Mnemonic({ word, style }) {
+  const props = useSpring({
+    transform: "scaleX(1)",
+    from: { transform: "scaleX(0)" },
+  });
+
   return (
-    <div style={style}>
+    <animated.div style={{ ...style, ...props }}>
       <Tile>{word}</Tile>
-    </div>
+    </animated.div>
   );
 }
 

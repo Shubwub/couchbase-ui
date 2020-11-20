@@ -41,6 +41,7 @@ const ListWrapper = styled.div`
   -webkit-box-shadow: 0px 2px 10px 5px rgba(0, 0, 0, 0.15);
   box-shadow: 5px 3px 5px 2px rgba(0, 0, 0, 0.05);
   background: white;
+  overflow-x: hidden;
   @media (max-width: ${mobile}px) {
     width: 100%;
   }

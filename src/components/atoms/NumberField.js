@@ -4,6 +4,7 @@ import { accent } from "../../style_variables";
 import { setWarning, storeMnemonics } from "../../redux/actions";
 import buttons from "../../buttons.json";
 import makeMnemonics from "../../helpers/functions";
+import { useSpring, animated } from "react-spring";
 
 /**
  * The area above the keypad and mnemonic list for displaying the currently
@@ -14,10 +15,11 @@ export default function NumberField() {
   const { number } = useSelector(({ keypad }) => keypad);
   const { warning } = useSelector(({ status }) => status);
   const dispatch = useDispatch();
+  const props = useSpring({ opacity: warning ? 1 : 0 });
 
   return (
     <>
-      {warning && <Warning>Please enter no more than 6 numbers.</Warning>}
+      <Warning style={props}>Please enter no more than 6 numbers.</Warning>
       <NumberBar data-name="number-field">
         {number}
         <Submit
@@ -36,7 +38,7 @@ export default function NumberField() {
   );
 }
 
-const NumberBar = styled.div`
+const NumberBar = styled(animated.div)`
   width: 100%;
   margin-bottom: 25px;
   height: 50px;
